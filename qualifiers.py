@@ -20,7 +20,6 @@ browser = webdriver.Chrome(ChromeDriverManager().install())
 browser.maximize_window()
 
 browser.get("https://www.transfermarkt.com/afrika-cup-qualifikation/teilnehmer/pokalwettbewerb/AFCQ/saison_id/2021")
-act = ActionChains(browser)
 sleep(1)
 teams_urls = browser.find_elements(By.XPATH,'//*[@id="yw1"]/table/tbody/tr[*]/td[2]/a')
 for i in range(len(teams_urls)):
@@ -29,36 +28,22 @@ for i in range(len(teams_urls)):
 for j in range(len(teams_urls)):
     browser.get(teams_urls[j])
     sleep(1)
-    act.send_keys(Keys.END).perform()
     newurl = browser.find_element(By.XPATH,'//*[@id="main"]/main/div[3]/div[1]/div[1]/div[3]/a[2]').get_attribute('href')
     browser.get(newurl)
-    sleep(3)
+    sleep(1)
     html = browser.page_source
     soup = BeautifulSoup(html,"html.parser")
-    # heights = browser.find_elements(By.XPATH,'//*[@id="yw1"]/table/tbody/tr[*]/td[5]')
     heights = soup.select('#yw1 > table > tbody > tr > td:nth-child(5)')
     allnames = soup.select('#yw1 > table > tbody > tr > td:nth-child(2) > table > tbody > tr:nth-child(1) > td.hauptlink > a')
     allpositions = soup.select('#yw1 > table > tbody > tr > td:nth-child(2) > table > tbody > tr:nth-child(2) > td')
     for c in range(len(heights)):
         if (heights[c].text == "1,86 m"):
             playerName = allnames[c].text
-            playerLink = allnames[c]['href']
+            playerLink = 'https://www.transfermarkt.com' + allnames[c]['href']
             playerPosition = allpositions[c].text
             names.append(playerName)
             links.append(playerLink)
             positions.append(playerPosition)
-
-
-# h #yw1 > table > tbody > tr:nth-child(1) > td:nth-child(5)
-# p #yw1 > table > tbody > tr:nth-child(1) > td:nth-child(2) > table > tbody > tr:nth-child(2) > td
-# name #yw1 > table > tbody > tr:nth-child(1) > td:nth-child(2) > table > tbody > tr:nth-child(1) > td.hauptlink > a
-# ------
-# h #yw1 > table > tbody > tr:nth-child(4) > td:nth-child(5)
-# p #yw1 > table > tbody > tr:nth-child(4) > td:nth-child(2) > table > tbody > tr:nth-child(2) > td
-# n #yw1 > table > tbody > tr:nth-child(4) > td:nth-child(2) > table > tbody > tr:nth-child(1) > td.hauptlink > a
-
-
-
 
 information = {
     'name':names,
@@ -67,3 +52,4 @@ information = {
 }
 df = pd.DataFrame(information)
 df.to_excel('allExpectedPlayers.xlsx',index=False)
+print("\n\n data collected successfully")
