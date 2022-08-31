@@ -3,3 +3,17 @@
 ## Al-Ahly signed a unique African striker, strong, scorer, fast, and an international player, and his height is 186 cm.
 ### I want to identify this player, so I used web scraping to pull the data of international African players with a height of 186 cm, and I wrote it in Sheet Excel to ### analyze the data and filter the positions to predict the player and I got that shortlist.
 ### The first file in the name of the qualifiers includes all the data of all the teams, it outputs a file called allExpectedPlayers, while the other file in the name of the cup includes data of the last teams of the African Nations Cup, it outputs a file called ExpectedPlayers
+##                 Habib Diallo            
+##                 Victor Osimhen          
+##                 Ricky Banda            
+##                 Issam Jebali           
+##                 Dembo Darboe           
+##                 Joseph Mendes          
+##                 Vasco Lopes            
+##                 David Henen            
+##                 Oumar Camara           
+##                 Souleymane Doukara     
+##                 Abdallah Sudi          
+##                 Casimir Ninga          
+##                 Ezechiel Ndouasel      
+##                 Samuel Nlend           
